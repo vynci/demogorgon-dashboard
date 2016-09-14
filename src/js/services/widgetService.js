@@ -1,5 +1,5 @@
 angular.module('RDash').service('widgetService', ['$http', '$q', function($http, $q) {
-    var gateway = 'http://pipeero-rest-api.herokuapp.com';
+    var gateway = 'https://pipeero-rest-api.herokuapp.com';
 	function getWidgets(userId) {
 		var def = $q.defer();
 

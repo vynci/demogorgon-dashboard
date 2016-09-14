@@ -1,0 +1,116 @@
+.overflow {
+	width: 100%;
+	/*margin: 0 0 2em 0;*/
+
+	/**
+	* Required properties to achieve text-overflow
+	*/
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.ellipsis {
+	text-overflow: ellipsis;
+
+	/* Required for text-overflow to do anything */
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.input-label{
+	font-size: 3em !important;
+}
+
+.sidebar-background-light{
+	background: #1abc9c !important;
+}
+
+.sidebar-background-dark{
+	background: #16a085 !important;
+}
+
+.sidebar-text-color {
+	color: white !important;
+}
+
+.controls {
+	margin-bottom: 20px;
+}
+.page-header {
+	margin-top: 20px;
+}
+ul {
+	list-style: none;
+}
+
+.gridster {
+	border: 1px solid #ccc;
+	border-bottom: none !important;
+}
+
+.box {
+	height: 100%;
+	border: 1px solid #ccc;
+	background-color: #fff;
+}
+.box-header {
+	background-color: #eee;
+	padding: 0 30px 0 10px;
+	border-bottom: 1px solid #ccc;
+	cursor: move;
+	position: relative;
+}
+.box-header h4 {
+	margin-top: 10px;
+	display: inline-block;
+}
+.box-content {
+	padding: 10px;
+}
+.box-header-btns {
+	top: 15px;
+	right: 10px;
+	cursor: pointer;
+	position: absolute;
+}
+a {
+	color: #ccc;
+}
+form {
+	margin-bottom: 0;
+}
+.gridster {
+	border: 1px solid #ccc;
+}
+
+
+.dg {
+	display: inline-block;
+	width: 140px;
+}
+.dialgauge-value {
+	font-size: 22px;
+	font-weight: 200;
+}
+.dialgauge-unit {
+	font-size: 12px;
+	stroke: green;
+	fill: pink;
+	font-weight: 100;
+}
+.dialgauge-title {
+	font-size: 12px;
+	stroke: green;
+	fill: pink;
+	font-weight: 100;
+}
+.dg1 {
+	display: inline-block;
+	width: 140px;
+}
+.dg1 .dialgauge-value {
+	font-size: 30px;
+	font-weight: 400;
+	stroke: grey;
+	fill: grey;
+}

@@ -4,12 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>RDash AngularJS</title>
+	<title>pipeero - dashboard</title>
   <!-- STYLES -->
   <!-- build:css lib/css/main.min.css -->
   <link rel="stylesheet" type="text/css" href="components/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="components/font-awesome/css/font-awesome.min.css">
-  <link rel="stylesheet" type="text/css" href="components/rdash-ui/dist/css/rdash.min.css">
+  <link rel="stylesheet" type="text/css" href="components/rdash-ui/dist/css/rdash.css">
+  <link rel="stylesheet" type="text/css" href="styles/less/main.css">
+  <link rel="stylesheet" type="text/css" href="components/angular-gridster/dist/angular-gridster.min.css"/>
+  <link rel="stylesheet" type="text/css" href="components/titatoggle/dist/titatoggle-dist-min.css"/>
+  <!-- <link rel="stylesheet" type="text/css" href="lib/wijmo.min.css"/> -->
   <!-- endbuild -->
   <!-- SCRIPTS -->
   <!-- build:js lib/js/main.min.js -->
@@ -17,6 +21,17 @@
   <script type="text/javascript" src="components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
   <script type="text/javascript" src="components/angular-cookies/angular-cookies.min.js"></script>
   <script type="text/javascript" src="components/angular-ui-router/release/angular-ui-router.min.js"></script>
+
+  <script type="text/javascript" src="components/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="components/javascript-detect-element-resize/jquery.resize.js"></script>
+  <script type="text/javascript" src="components/angular-gridster/dist/angular-gridster.min.js"></script>
+  <script type="text/javascript" src="components/ng-lodash/build/ng-lodash.min.js"></script>
+  <script type="text/javascript" src="components/angular-progress-arc/angular-progress-arc.min.js"></script>
+
+  <script type="text/javascript" src="lib/angular-round-progress-directive.js"></script>
+  <script type="text/javascript" src="lib/socket.js"></script>
+  <script type="text/javascript" src="lib/socket.io.js"></script>
+  <script type="text/javascript" src="lib/parse-1.6.14.js"></script>
   <!-- endbuild -->
   <!-- Custom Scripts -->
   <script type="text/javascript" src="js/dashboard.min.js"></script>
@@ -29,22 +44,33 @@
       <ul class="sidebar">
         <li class="sidebar-main">
           <a ng-click="toggleSidebar()">
-            Dashboard
-            <span class="menu-icon glyphicon glyphicon-transfer"></span>
+            pipeero
+            <span ng-show="toggle" class="menu-icon glyphicon glyphicon-chevron-left"></span>
+            <span ng-hide="toggle" class="menu-icon glyphicon glyphicon-chevron-right"></span>
+
           </a>
         </li>
-        <li class="sidebar-title"><span>NAVIGATION</span></li>
+        <!-- <li class="sidebar-title"><span>NAVIGATION</span></li> -->
         <li class="sidebar-list">
-          <a href="#">Dashboard <span class="menu-icon fa fa-tachometer"></span></a>
+          <a href="#">Discover <span class="menu-icon fa fa-tachometer"></span></a>
         </li>
         <li class="sidebar-list">
-          <a href="#/tables">Tables <span class="menu-icon fa fa-table"></span></a>
+          <a href="#">Dashboards <span class="menu-icon fa fa-tachometer"></span></a>
+        </li>
+        <li class="sidebar-list">
+          <a href="#/tables">Things <span class="menu-icon fa fa-table"></span></a>
+        </li>
+        <li class="sidebar-list">
+          <a href="#/tables">Settings <span class="menu-icon fa fa-table"></span></a>
+        </li>
+        <li class="sidebar-list">
+          <a href="#">Logout <span class="menu-icon fa fa-sign-out"></span></a>
         </li>
       </ul>
       <div class="sidebar-footer">
         <div class="col-xs-4">
           <a href="https://github.com/rdash/rdash-angular" target="_blank">
-            Github
+            Home
           </a>
         </div>
         <div class="col-xs-4">
@@ -68,38 +94,18 @@
         <div class="row header">
           <div class="col-xs-12">
             <div class="user pull-right">
-              <div class="item dropdown" uib-dropdown>
+              <!-- <div class="item dropdown" uib-dropdown>
                 <a href="#" class="dropdown-toggle" uib-dropdown-toggle>
                   <img src="img/avatar.jpg">
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right">
-                  <li class="dropdown-header">
-                    Joe Bloggs
-                  </li>
-                  <li class="divider"></li>
-                  <li class="link">
-                    <a href="#">
-                      Profile
-                    </a>
-                  </li>
-                  <li class="link">
-                    <a href="#">
-                      Menu Item
-                    </a>
-                  </li>
-                  <li class="link">
-                    <a href="#">
-                      Menu Item
-                    </a>
-                  </li>
-                  <li class="divider"></li>
                   <li class="link">
                     <a href="#">
                       Logout
                     </a>
                   </li>
                 </ul>
-              </div>
+              </div> -->
               <div class="item dropdown" uib-dropdown>
                <a href="#" class="dropdown-toggle" uib-dropdown-toggle>
                   <i class="fa fa-bell-o"></i>

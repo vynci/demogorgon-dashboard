@@ -27,6 +27,15 @@ function MasterCtrl($scope, $cookieStore) {
         }
 
     });
+    
+    $scope.isLoggedIn = false;
+
+    $scope.doLogin = function(){
+        $scope.isLoggedIn = true;
+    }
+    $scope.doLogout = function(){
+        $scope.isLoggedIn = false;
+    }
 
     $scope.toggleSidebar = function() {
         $scope.toggle = !$scope.toggle;

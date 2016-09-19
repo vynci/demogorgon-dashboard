@@ -52,19 +52,22 @@
         </li>
         <!-- <li class="sidebar-title"><span>NAVIGATION</span></li> -->
         <li class="sidebar-list">
-          <a href="#">Discover <span class="menu-icon fa fa-tachometer"></span></a>
+          <a href="#">Discover <span class="menu-icon fa fa-eye"></span></a>
         </li>
-        <li class="sidebar-list">
+        <li class="sidebar-list" ng-show="isLoggedIn">
           <a href="#">Dashboards <span class="menu-icon fa fa-tachometer"></span></a>
         </li>
-        <li class="sidebar-list">
-          <a href="#/tables">Things <span class="menu-icon fa fa-table"></span></a>
+        <li class="sidebar-list" ng-show="isLoggedIn">
+          <a href="#/tables">Things <span class="menu-icon fa fa-cube"></span></a>
         </li>
-        <li class="sidebar-list">
-          <a href="#/tables">Settings <span class="menu-icon fa fa-table"></span></a>
+        <li class="sidebar-list" ng-show="isLoggedIn">
+          <a href="#/tables">Settings <span class="menu-icon fa fa-gear"></span></a>
         </li>
-        <li class="sidebar-list">
-          <a href="#">Logout <span class="menu-icon fa fa-sign-out"></span></a>
+        <li class="sidebar-list" ng-show="isLoggedIn">
+          <a ng-click="doLogout()">Logout <span class="menu-icon fa fa-sign-out"></span></a>
+        </li>
+        <li class="sidebar-list" ng-hide="isLoggedIn">
+          <a href="#/login">Login <span class="menu-icon fa fa-sign-in"></span></a>
         </li>
       </ul>
       <div class="sidebar-footer">
@@ -106,7 +109,7 @@
                   </li>
                 </ul>
               </div> -->
-              <div class="item dropdown" uib-dropdown>
+              <div class="item dropdown" ng-show="isLoggedIn" uib-dropdown>
                <a href="#" class="dropdown-toggle" uib-dropdown-toggle>
                   <i class="fa fa-bell-o"></i>
                 </a>

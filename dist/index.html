@@ -31,7 +31,7 @@
           <a href="#">Discover <span class="menu-icon fa fa-eye"></span></a>
         </li>
         <li class="sidebar-list" ng-show="isLoggedIn">
-          <a href="#">Dashboards <span class="menu-icon fa fa-tachometer"></span></a>
+          <a href="#/dashboard">Dashboards <span class="menu-icon fa fa-tachometer"></span></a>
         </li>
         <li class="sidebar-list" ng-show="isLoggedIn">
           <a href="#/tables">Things <span class="menu-icon fa fa-cube"></span></a>
@@ -100,7 +100,7 @@
                 </ul>
               </div>
             </div>
-            <div class="meta">
+            <div class="meta" ng-show="isLoggedIn">
               <div class="page">
                 Dashboard
               </div>

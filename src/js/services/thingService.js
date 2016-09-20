@@ -1,5 +1,5 @@
 angular.module('RDash').service('thingService', ['$q', '$http', '$window', function($q, $http) {
-    var gateway = 'https://pipeero-rest-api.herokuapp.com';
+  var gateway = 'https://pipeero-rest-api.herokuapp.com';
 	var getThings = function(id){
 		var defer = $q.defer();
 		var Thing = Parse.Object.extend("Thing");

@@ -9,8 +9,8 @@
     </div>
   </div>
 </div>
-
 <div gridster="gridsterOpts">
+  <div ng-show="!standardItems"><rd-loading></rd-loading></div>
   <ul>
     <li gridster-item="customItemMap" ng-repeat="item in standardItems" style="background: gray;">
       <div class="box">

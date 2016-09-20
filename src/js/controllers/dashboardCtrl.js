@@ -2,12 +2,17 @@
  * Master Controller
  */
 angular.module('RDash')
-    .controller('DashboardCtrl', ['$scope', '$cookieStore', '$uibModal', 'thingService', 'socket', 'lodash', 'widgetService', DashboardCtrl]);
+    .controller('DashboardCtrl', ['$scope', '$cookieStore', '$uibModal', 'thingService', 'socket', 'lodash', 'widgetService', '$localStorage', DashboardCtrl]);
 
-function DashboardCtrl($scope, $cookieStore, $uibModal, thingService, socket, lodash, widgetService) {
+function DashboardCtrl($scope, $cookieStore, $uibModal, thingService, socket, lodash, widgetService, $localStorage) {
 
-    var ownerId = 'laser42';
-    var userId = '57d6d72d7ee52c0300f3e8c6';
+    var ownerId = '';
+    var userId = '';
+
+    if ($localStorage.currentUser) {
+      userId = $localStorage.currentUser.info.id;
+    }
+
     $scope.size = 120;
     $scope.progress = 0.50;
     $scope.strokeWidth = 20;
@@ -119,7 +124,7 @@ function DashboardCtrl($scope, $cookieStore, $uibModal, thingService, socket, lo
 
     $scope.executeButton = function(data){
       console.log(data);
-      socket.emit('publish',{topic:'pub/' + ownerId + '/' + data._id, payload:data.payload});
+      socket.emit('publish',{topic:'pub/' + userId + '/' + data._id, payload:data.payload});
     }
 
     $scope.saveWidgets = function(){

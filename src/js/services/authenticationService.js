@@ -15,6 +15,19 @@ angular.module('RDash').service('authenticationService', ['$q', '$http', '$local
       return def.promise;
     }
 
+    function signup(data) {
+      var def = $q.defer();
+      console.log(data);
+      $http.post( gateway + '/pipe/user', data )
+      .success(function(data) {
+        def.resolve(data);
+      })
+      .error(function() {
+        def.reject("Failed to get the ");
+      });
+      return def.promise;
+    }
+
     getUsers = function(id){
       var def = $q.defer();
 
@@ -35,6 +48,7 @@ angular.module('RDash').service('authenticationService', ['$q', '$http', '$local
     }
 
     service.login = login;
+    service.signup = signup;
     service.getUsers = getUsers;
     service.Logout = Logout;
 

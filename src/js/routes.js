@@ -6,7 +6,7 @@
 angular.module('RDash').config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
     function($stateProvider, $urlRouterProvider, $httpProvider) {
         // For unmatched routes
-        $urlRouterProvider.otherwise('/');
+        $urlRouterProvider.otherwise('/login');
 
         // Application routes
         $stateProvider

@@ -3,9 +3,9 @@
  */
 
 angular.module('RDash')
-    .controller('MasterCtrl', ['$scope', '$cookieStore', 'authenticationService', '$localStorage', '$http', '$location', MasterCtrl]);
+    .controller('MasterCtrl', ['$scope', '$cookieStore', 'authenticationService', '$localStorage', '$http', '$location', '$window', MasterCtrl]);
 
-function MasterCtrl($scope, $cookieStore, authenticationService, $localStorage, $http, $location) {
+function MasterCtrl($scope, $cookieStore, authenticationService, $localStorage, $http, $location, $window) {
     /**
      * Sidebar Toggle & Cookie Control
      */
@@ -19,6 +19,9 @@ function MasterCtrl($scope, $cookieStore, authenticationService, $localStorage, 
     $scope.isLoggedIn = false;
     if ($localStorage.currentUser) {
       $scope.isLoggedIn = true;
+      $scope.username = $localStorage.currentUser.info.name;
+    } else{
+      $scope.username = 'pipeero';
     }
 
     $scope.getWidth = function() {
@@ -39,28 +42,81 @@ function MasterCtrl($scope, $cookieStore, authenticationService, $localStorage, 
     });
 
     $scope.doLogin = function(){
-      $scope.isLoading = true;
+      $scope.isLoginLoading = true;
       authenticationService.login($scope.user)
       .then(function(result) {
+        $scope.isLoginLoading = false;
         if (result.success) {
           $localStorage.currentUser = { info : result.data, token: result.token };
           $http.defaults.headers.common['x-access-token'] = result.token;
+          $scope.username = $localStorage.currentUser.info.name;
           $location.path('/dashboard');
           $scope.isLoggedIn = true;
-          $scope.isLoading = false;
         } else {
 
           $scope.invalidLoginToaster = true;
           $scope.loginAlertMessage = {
             message : result.message
           }
-          $scope.isLoading = false;
         }
       },
       function(data) {
         console.log(data);
       });
     }
+
+    $scope.doRegister = function(){
+      $scope.isRegisterLoading = true;
+      authenticationService.signup($scope.user)
+      .then(function(result) {
+        $scope.isRegisterLoading = false;
+        if(result.errors){
+          $scope.invalidLoginToaster = true;
+          var errMsg= '';
+          if(result.errors.password){
+            errMsg = 'Invalid Password';
+          }else{
+            errMsg = 'Email address already taken.';
+          }
+
+          $scope.loginAlertMessage = {
+            message : errMsg
+          }
+        }else{
+          var credentials = {
+            email : result.email,
+            password : result.password
+          }
+
+          $scope.isRegisterLoading = false;
+          authenticationService.login(credentials)
+          .then(function(result) {
+            if (result.success) {
+              $localStorage.currentUser = { info : result.data, token: result.token };
+              $http.defaults.headers.common['x-access-token'] = result.token;
+              $location.path('/dashboard');
+              $scope.isLoggedIn = true;
+              $scope.isLoginLoading = false;
+            } else {
+
+              $scope.invalidLoginToaster = true;
+              $scope.loginAlertMessage = {
+                message : result.message
+              }
+              $scope.isLoginLoading = false;
+            }
+          },
+          function(data) {
+            console.log(data);
+          });
+        }
+      },
+      function(data) {
+        console.log(data);
+        $scope.isRegisterLoading = false;
+      });
+    }
+
     $scope.doLogout = function(){
       console.log('logout');
       delete $localStorage.currentUser;
@@ -68,6 +124,8 @@ function MasterCtrl($scope, $cookieStore, authenticationService, $localStorage, 
       $http.defaults.headers.common['x-access-token'] = '';
       $scope.isLoggedIn = false;
       $location.path('/login');
+      $scope.username = 'pipeero';
+      $window.location.reload();
     }
 
     $scope.closeLoginAlert = function(){

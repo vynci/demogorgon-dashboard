@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>pipeero - dashboard</title>
+	<title>pipeero - dashboard (beta)</title>
+  <link rel="icon" type="image/png" href="img/icon.png">
   <!-- STYLES -->
   <link rel="stylesheet" href="lib/css/main.min.css"/>
   <!-- SCRIPTS -->
@@ -16,11 +17,11 @@
   <div id="page-wrapper" ng-class="{'open': toggle}" ng-cloak>
 
     <!-- Sidebar -->
-    <div id="sidebar-wrapper">
+    <div id="sidebar-wrapper" style="background: #1ccdaa !important;">
       <ul class="sidebar">
         <li class="sidebar-main">
           <a ng-click="toggleSidebar()">
-            pipeero
+            {{username || 'pipeero'}}
             <span ng-show="toggle" class="menu-icon glyphicon glyphicon-chevron-left"></span>
             <span ng-hide="toggle" class="menu-icon glyphicon glyphicon-chevron-right"></span>
 

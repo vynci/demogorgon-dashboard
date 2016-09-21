@@ -2,9 +2,9 @@
  * Master Controller
  */
 angular.module('RDash')
-    .controller('DashboardCtrl', ['$scope', '$cookieStore', '$uibModal', 'thingService', 'socket', 'lodash', 'widgetService', '$localStorage', DashboardCtrl]);
+    .controller('DashboardCtrl', ['$scope', '$cookieStore', '$uibModal', 'thingService', 'socket', 'lodash', 'widgetService', '$localStorage', '$timeout', DashboardCtrl]);
 
-function DashboardCtrl($scope, $cookieStore, $uibModal, thingService, socket, lodash, widgetService, $localStorage) {
+function DashboardCtrl($scope, $cookieStore, $uibModal, thingService, socket, lodash, widgetService, $localStorage, $timeout) {
 
     var ownerId = '';
     var userId = '';
@@ -63,13 +63,12 @@ function DashboardCtrl($scope, $cookieStore, $uibModal, thingService, socket, lo
         $scope.standardItems = widgets;
         if(socketSubscribe){
           lodash.forEach(widgets, function(value, key) {
-            console.log(value.id);
             socket.emit('subscribe',{topic:'sub/' + userId + '/' + value.thingId});
           });
         }
       },
       function(data) {
-        console.log(data);
+
       });
     };
 
@@ -84,6 +83,7 @@ function DashboardCtrl($scope, $cookieStore, $uibModal, thingService, socket, lo
         resize: function(event, $element, widget) {}, // optional callback fired when item is resized,
         stop: function(event, $element, widget) {
           console.log(widget);
+          $scope.saveWidgets();
         } // optional callback fired when item is finished resizing
       },
       draggable: {
@@ -93,6 +93,7 @@ function DashboardCtrl($scope, $cookieStore, $uibModal, thingService, socket, lo
         drag: function(event, $element, widget) {}, // optional callback fired when item is moved,
         stop: function(event, $element, widget) {
           console.log(widget);
+          $scope.saveWidgets();
         } // optional callback fired when item is finished dragging
       }
     };
@@ -140,11 +141,15 @@ function DashboardCtrl($scope, $cookieStore, $uibModal, thingService, socket, lo
         function(data) {
         });
       });
+      $scope.alertShow = true;
       $scope.alertMessage = {
         message : 'Successfully Saved!',
         type: 'success'
       }
-      $scope.alertShow = true;
+
+      $timeout(function() {
+        $scope.alertShow = false;
+      }, 2000);
     }
 
     $scope.addThing = function (size) {

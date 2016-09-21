@@ -76,7 +76,7 @@ function MasterCtrl($scope, $cookieStore, authenticationService, $localStorage, 
           if(result.errors.password){
             errMsg = 'Invalid Password';
           }else{
-            errMsg = 'Email address already taken.';
+            errMsg = 'Email address already taken, or might be invalid.';
           }
 
           $scope.loginAlertMessage = {

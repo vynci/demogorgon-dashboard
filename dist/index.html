@@ -29,13 +29,13 @@
         </li>
         <!-- <li class="sidebar-title"><span>NAVIGATION</span></li> -->
         <li class="sidebar-list">
-          <a href="#">Discover <span class="menu-icon fa fa-eye"></span></a>
+          <a href="#">Discover <span class="menu-icon fa fa-compass"></span></a>
         </li>
         <li class="sidebar-list" ng-show="isLoggedIn">
           <a href="#/dashboard">Dashboards <span class="menu-icon fa fa-tachometer"></span></a>
         </li>
         <li class="sidebar-list" ng-show="isLoggedIn">
-          <a href="#/tables">Things <span class="menu-icon fa fa-cube"></span></a>
+          <a href="#/things">Things <span class="menu-icon fa fa-cube"></span></a>
         </li>
         <li class="sidebar-list" ng-show="isLoggedIn">
           <a href="#/tables">Settings <span class="menu-icon fa fa-gear"></span></a>
@@ -49,12 +49,12 @@
       </ul>
       <div class="sidebar-footer">
         <div class="col-xs-4">
-          <a href="#" target="_blank">
+          <a href="#">
             Home
           </a>
         </div>
         <div class="col-xs-4">
-          <a href="#" target="_blank">
+          <a href="#">
             About
           </a>
         </div>
@@ -96,7 +96,7 @@
                   </li>
                   <li class="divider"></li>
                   <li>
-                    <a href="#">Server Down!</a>
+                    <a href="#">None</a>
                   </li>
                 </ul>
               </div>
@@ -106,7 +106,8 @@
                 Dashboard
               </div>
               <div class="breadcrumb-links">
-                Home / Dashboard
+                Email: {{email}}<br>
+                UserId: {{userId}}
               </div>
             </div>
           </div>

@@ -12,6 +12,7 @@ function MasterCtrl($scope, $cookieStore, authenticationService, $localStorage, 
     var mobileView = 992;
 
     $scope.user = {
+      name: '',
       email: '',
       password: ''
     }
@@ -20,6 +21,8 @@ function MasterCtrl($scope, $cookieStore, authenticationService, $localStorage, 
     if ($localStorage.currentUser) {
       $scope.isLoggedIn = true;
       $scope.username = $localStorage.currentUser.info.name;
+      $scope.userId = $localStorage.currentUser.info.id;
+      $scope.email = $localStorage.currentUser.info.email;
     } else{
       $scope.username = 'pipeero';
     }
@@ -41,6 +44,14 @@ function MasterCtrl($scope, $cookieStore, authenticationService, $localStorage, 
 
     });
 
+    $scope.showRegisterForm = function(){
+      $scope.isRegisterForm = true;
+    }
+
+    $scope.hideRegisterForm = function(){
+      $scope.isRegisterForm = false;
+    }
+
     $scope.doLogin = function(){
       $scope.isLoginLoading = true;
       authenticationService.login($scope.user)
@@ -49,7 +60,11 @@ function MasterCtrl($scope, $cookieStore, authenticationService, $localStorage, 
         if (result.success) {
           $localStorage.currentUser = { info : result.data, token: result.token };
           $http.defaults.headers.common['x-access-token'] = result.token;
+
           $scope.username = $localStorage.currentUser.info.name;
+          $scope.userId = $localStorage.currentUser.info.id;
+          $scope.email = $localStorage.currentUser.info.email;
+
           $location.path('/dashboard');
           $scope.isLoggedIn = true;
         } else {
@@ -87,13 +102,17 @@ function MasterCtrl($scope, $cookieStore, authenticationService, $localStorage, 
             email : result.email,
             password : result.password
           }
-
-          $scope.isRegisterLoading = false;
           authenticationService.login(credentials)
           .then(function(result) {
+            $scope.isRegisterLoading = false;
             if (result.success) {
               $localStorage.currentUser = { info : result.data, token: result.token };
               $http.defaults.headers.common['x-access-token'] = result.token;
+
+              $scope.username = $localStorage.currentUser.info.name;
+              $scope.userId = $localStorage.currentUser.info.id;
+              $scope.email = $localStorage.currentUser.info.email;
+
               $location.path('/dashboard');
               $scope.isLoggedIn = true;
               $scope.isLoginLoading = false;

@@ -15,9 +15,10 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider', '$httpPr
                 templateUrl: 'templates/dashboard.html',
                 controller: 'DashboardCtrl'
             })
-            .state('tables', {
-                url: '/tables',
-                templateUrl: 'templates/tables.html'
+            .state('things', {
+                url: '/things',
+                templateUrl: 'templates/things.html',
+                controller: 'ThingCtrl'
             })
             .state('login', {
                 url: '/login',

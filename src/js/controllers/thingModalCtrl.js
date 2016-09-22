@@ -3,12 +3,11 @@
  */
 
 angular.module('RDash')
-    .controller('ThingModalCtrl', ['$scope', '$uibModalInstance', 'items','thingService', ThingModalCtrl]);
+    .controller('ThingModalCtrl', ['$scope', '$uibModalInstance', 'items','thingService','$localStorage', ThingModalCtrl]);
 
-function ThingModalCtrl($scope, $uibModalInstance, items, thingService) {
+function ThingModalCtrl($scope, $uibModalInstance, items, thingService, $localStorage) {
 
-  console.log(thingService);
-  var modalUserId = '57d6d72d7ee52c0300f3e8c6';
+  var modalUserId = $localStorage.currentUser.info.id;
 
   if(typeof items !== 'object'){
     $scope.showDeleteButton = true;

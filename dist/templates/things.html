@@ -1,0 +1,59 @@
+<div class="row">
+  <div class="col-lg-12">
+    <h4>My Things ({{things.length}})</h4>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-10">
+  </div>
+  <div class="col-lg-2">
+    <button class="btn btn-block btn-info"><span class="fa fa-plus"></span> Add Thing</button>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12">
+    <!-- <rd-widget>
+      <rd-widget-header icon="fa-cube" title="My Things ({{things.length}})">
+        <input type="text" placeholder="Search" class="form-control input-sm" /><br>
+      </rd-widget-header>
+      <rd-widget-body classes="large no-padding"> -->
+        <div class="table-responsive" style="border: 1px solid #444; padding: 0px 0px 5px">
+          <table class="table">
+            <thead style="background: #16a085; color: white">
+              <tr>
+                <th>Name</th>
+                <th>Id</th>
+                <th>Created At</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="thing in things">
+                <td>
+                  <strong id="thing.name" ng-if="!editMode">{{ thing.name }}</strong>
+                  <span ng-if="editMode">
+                    <input ng-model="thing.name">
+                    <button class="btn btn-sm btn-primary" ng-click="save(thing); editMode = false">Save</button>
+                  </span>
+
+                </td>
+                <td>{{thing._id}}</td>
+                <td>{{thing.createDate}}</td>
+                <td>{{thing.status}}</td>
+                <td>
+                  <button class="btn btn-sm btn-success" ng-click="editKeyword(keyword); editMode = true"><span class="fa fa-edit"></span></button>
+                  <button class="btn btn-sm btn-danger" ng-click="deleteKeyword(keyword)"><span class="fa fa-trash"></span></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div ng-show="!things" style="text-align: center"><h4>Please Wait, Loading Things...</h4></div>
+        </div>
+      <!-- </rd-widget-body>
+      <rd-widget> -->
+  </div>
+
+</div>

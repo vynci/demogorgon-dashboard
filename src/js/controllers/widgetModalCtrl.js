@@ -3,9 +3,9 @@
  */
 
 angular.module('RDash')
-    .controller('ThingModalCtrl', ['$scope', '$uibModalInstance', 'items','thingService','$localStorage', ThingModalCtrl]);
+    .controller('WidgetModalCtrl', ['$scope', '$uibModalInstance', 'items','thingService','$localStorage', WidgetModalCtrl]);
 
-function ThingModalCtrl($scope, $uibModalInstance, items, thingService, $localStorage) {
+function WidgetModalCtrl($scope, $uibModalInstance, items, thingService, $localStorage) {
 
   var modalUserId = $localStorage.currentUser.info.id;
 

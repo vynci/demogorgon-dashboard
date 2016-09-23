@@ -1,0 +1,57 @@
+<div>
+	<form name="_form" class="form-horizontal">
+		<div class="modal-header">
+			<button type="button" class="close" ng-click="dismiss()" aria-hidden="true">&times;</button>
+			<h3>Widget Settings</h3>
+		</div>
+
+		<div class="modal-body">
+			<div class="form-group">
+				<label class="control-label col-lg-3 col-md-3"><span tooltip="I'm a tooltip!">Widget Name</span></label>
+				<div class="col-lg-9 col-md-9">
+					<input name="name" placeholder="ex: Temperature Sensor" type="text" ng-model="form.name" class="form-control" tooltip-placement="top" uib-tooltip="Create a name for your widget" required/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-lg-3 col-md-3">Thing Id</label>
+				<div class="col-lg-9 col-md-9">
+					<input name="name" placeholder="ex: 57e2d1c925f7170300d97f0f" type="text" ng-model="form.thingId" class="form-control" tooltip-placement="top" uib-tooltip="Input an existing thingId, or create a new one by clicking on 'generate' button"/><br>
+					<button ng-click="generateThing()" class="btn btn-success btn-block" tooltip-placement="top" uib-tooltip="Creates a thing">Generate</button>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-lg-3 col-md-3">Description</label>
+				<div class="col-lg-9 col-md-9">
+					<input name="name" placeholder="ex: Living Room Temperature Sensor" type="text" ng-model="form.description" class="form-control" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-lg-3 col-md-3">Thing Type</label>
+				<div class="col-lg-9 col-md-9">
+					<select class="form-control" name="mySelect" id="mySelect"
+					ng-options="option.name for option in data.availableOptions track by option.id"
+					ng-model="data.selectedOption"></select>
+				</div>
+			</div>
+			<div class="form-group" ng-show="data.selectedOption.id === '2'">
+				<label class="control-label col-lg-3 col-md-3">Button Label</label>
+				<div class="col-lg-9 col-md-9">
+					<input name="name" placeholder="ex: Switch Off" type="textarea" ng-model="form.buttonLabel" class="form-control" />
+				</div>
+			</div>
+			<div class="form-group" ng-show="data.selectedOption.id === '2'">
+				<label class="control-label col-lg-3 col-md-3">Payload</label>
+				<div class="col-lg-9 col-md-9">
+					<input name="name" placeholder="ex: Off" type="textarea" ng-model="form.payload" class="form-control" />
+				</div>
+			</div>
+
+		</div>
+
+		<div class="modal-footer">
+			<a ng-hide="showDeleteButton" ng-click="remove()" class="btn btn-danger pull-left" data-dismiss="modal" tabindex="-1"><i class="glyphicon glyphicon-trash"></i>Delete</a>
+			<a ng-click="dismiss()" data-dismiss="modal" class="btn btn-default" tabindex="-1"><i class="glyphicon glyphicon-remove"></i>Cancel</a>
+			<button ng-click="save()" class="btn btn-primary"><i class="glyphicon glyphicon-ok"></i>Save</button>
+		</div>
+	</form>
+</div>

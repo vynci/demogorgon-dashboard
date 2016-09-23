@@ -1,0 +1,30 @@
+<div class="wrapper">
+  <div class="form-signin" style="box-shadow: 1px 1px 1px #888">
+    <form ng-submit="doLogin()">
+      <div style="text-align: center; padding-bottom: 35px; padding-top: 10px">
+        <img src="img/logo.png" alt="">
+      </div>
+      <input ng-show="isRegisterForm" type="text" class="form-control login-input" ng-model="user.name" name="username" placeholder="Name"><br>
+      <input type="email" class="form-control login-input" ng-model="user.email" name="email" placeholder="Email Address" required="" autofocus=""><br>
+      <input type="password" class="form-control login-input" ng-model="user.password" name="password" placeholder="Password" required="">
+      <br>
+      <!-- <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me -->
+      <br>
+      <uib-alert ng-show="invalidLoginToaster" type="{{alertMessage.type}}" close="closeLoginAlert()" dismiss-on-timeout="1000">{{loginAlertMessage.message}}</uib-alert>
+      <button ng-hide="isRegisterForm" class="btn btn-lg btn-success btn-block" type="submit"><span ng-hide="isLoginLoading">Signin</span><span ng-show="isLoginLoading">Please Wait, Logging in...</span></button>
+      <div ng-hide="isRegisterForm" style="text-align: center; padding-top: 15px">
+        <span>New to pipeero? <a href="#" ng-click="showRegisterForm()" style="color: #f89406">Sign Up</a></span>
+      </div>
+
+    </form>
+    <br>
+    <button ng-show="isRegisterForm" class="btn btn-lg btn-warning btn-block" ng-click="doRegister()"><span ng-hide="isRegisterLoading">Register</span><span ng-show="isRegisterLoading">Please Wait, Signing up...</span></button>
+    <div ng-show="isRegisterForm" style="text-align: center; padding-top: 15px">
+      <span>Already have an account? <a href="#" ng-click="hideRegisterForm()" style="color: #16a085">Login</a></span>
+    </div>
+  </div>
+  <br>
+  <div style="text-align: center">
+    <h6 style="color:#444">Copyright © 2016 zagatek. All Rights Reserved.</h6>
+  </div>
+</div>

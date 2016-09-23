@@ -8,7 +8,7 @@
   <div class="col-lg-10">
   </div>
   <div class="col-lg-2">
-    <button class="btn btn-block btn-info"><span class="fa fa-plus"></span> Add Thing</button>
+    <button class="btn btn-block btn-warning" ng-click="addThing()"><span class="fa fa-plus"></span> Add Thing</button>
   </div>
 </div>
 
@@ -33,19 +33,14 @@
             <tbody>
               <tr ng-repeat="thing in things">
                 <td>
-                  <strong id="thing.name" ng-if="!editMode">{{ thing.name }}</strong>
-                  <span ng-if="editMode">
-                    <input ng-model="thing.name">
-                    <button class="btn btn-sm btn-primary" ng-click="save(thing); editMode = false">Save</button>
-                  </span>
-
+                 {{ thing.name }}
                 </td>
                 <td>{{thing._id}}</td>
                 <td>{{thing.createDate}}</td>
                 <td>{{thing.status}}</td>
                 <td>
-                  <button class="btn btn-sm btn-success" ng-click="editKeyword(keyword); editMode = true"><span class="fa fa-edit"></span></button>
-                  <button class="btn btn-sm btn-danger" ng-click="deleteKeyword(keyword)"><span class="fa fa-trash"></span></button>
+                  <button class="btn btn-sm btn-success" ng-click="editThing(thing)"><span class="fa fa-edit"></span></button>
+                  <button class="btn btn-sm btn-danger" ng-click="deleteThing(thing)"><span class="fa fa-trash"></span></button>
                 </td>
               </tr>
             </tbody>

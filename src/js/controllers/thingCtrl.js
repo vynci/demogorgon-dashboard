@@ -5,7 +5,6 @@ angular.module('RDash')
     .controller('ThingCtrl', ['$scope', '$uibModal', 'thingService', 'socket', 'lodash', 'widgetService', '$localStorage', '$timeout', ThingCtrl]);
 
 function ThingCtrl($scope, $uibModal, thingService, socket, lodash, widgetService, $localStorage, $timeout) {
-  console.log('thing!');
   var userId = '';
   if ($localStorage.currentUser) {
     userId = $localStorage.currentUser.info.id;
@@ -19,5 +18,44 @@ function ThingCtrl($scope, $uibModal, thingService, socket, lodash, widgetServic
   function(data) {
 
   });
+  
+  $scope.editThing = function(thing){
+    var modalInstance = $uibModal.open({
+    animation: false,
+    templateUrl: 'templates/thingModal.html',
+    controller: 'ThingModalCtrl',
+    resolve: {
+        items: function () {
+            return thing;
+        }
+    }
+    });
 
+    modalInstance.result.then(function (selectedItem) {
+    // createWidget(selectedItem);
+    }, function () {
+    });    
+  }
+  
+  $scope.deleteThing = function(thing){
+    console.log(thing);  
+  }
+  
+  $scope.addThing = function(){
+    var modalInstance = $uibModal.open({
+    animation: false,
+    templateUrl: 'templates/thingModal.html',
+    controller: 'ThingModalCtrl',
+    resolve: {
+        items: function () {
+        return false;
+        }
+    }
+    });
+
+    modalInstance.result.then(function (selectedItem) {
+    // createWidget(selectedItem);
+    }, function () {
+    });      
+  }
 }

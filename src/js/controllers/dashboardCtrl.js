@@ -155,8 +155,8 @@ function DashboardCtrl($scope, $cookieStore, $uibModal, thingService, socket, lo
     $scope.addThing = function (size) {
       var modalInstance = $uibModal.open({
         animation: false,
-        templateUrl: 'templates/thingModal.html',
-        controller: 'ThingModalCtrl',
+        templateUrl: 'templates/widgetModal.html',
+        controller: 'WidgetModalCtrl',
         resolve: {
           items: function () {
             return false;
@@ -174,8 +174,8 @@ function DashboardCtrl($scope, $cookieStore, $uibModal, thingService, socket, lo
       console.log(data);
       var modalInstance = $uibModal.open({
         animation: false,
-        templateUrl: 'templates/thingModal.html',
-        controller: 'ThingModalCtrl',
+        templateUrl: 'templates/widgetModal.html',
+        controller: 'WidgetModalCtrl',
         resolve: {
           items: function () {
             return data;

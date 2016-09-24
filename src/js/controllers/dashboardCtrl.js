@@ -6,6 +6,8 @@ angular.module('RDash')
 
 function DashboardCtrl($scope, $cookieStore, $uibModal, thingService, socket, lodash, widgetService, $localStorage, $timeout) {
 
+    console.log('dashboard!');
+
     var ownerId = '';
     var userId = '';
 
@@ -25,36 +27,40 @@ function DashboardCtrl($scope, $cookieStore, $uibModal, thingService, socket, lo
       percentage: 0.11
     }
     // Here I synchronize the value of label and percentage in order to have a nice demo
-    $scope.$watch('roundProgressData', function (newValue, oldValue) {
-      newValue.percentage = newValue.label / 100;
-    }, true);
+    // $scope.$watch('roundProgressData', function (newValue, oldValue) {
+    //   newValue.percentage = newValue.label / 100;
+    // }, true);
 
-    socket.on('connect', function(){
-      console.log('socket connect');
-      _getAll(true);
-      // socket.emit('subscribe',{topic:'sub/' + ownerId + '/' + thingId1});
-
-      // socket.emit('publish',{topic:'pub/' + ownerId + '/' + thingId1, payload:'from client2: laser42'});
-    });
-
-    socket.on('server-to-client', function(data){
-
-      var thingId = data.topic;
-      thingId = thingId.split('/');
-      thingId = thingId[2];
-
-      var x = lodash.findIndex($scope.standardItems, function(o) {
-        return o.thingId === thingId;
-      });
-
-      $scope.standardItems[x].inputValue = data.payload;
-
+    $scope.$on('$locationChangeStart', function(next, current) {
+      console.log('next');
+      socket.disconnect();
     });
 
     $scope.alertShow = false;
 
     $scope.closeAlert = function(){
       $scope.alertShow = false;
+    }
+
+    function socketInit(){
+      console.log('socket init!');
+      socket.on('connect', function(){
+        console.log('socket connect');
+        // _getAll(true);
+      });
+
+      socket.on('server-to-client', function(data){
+        var thingId = data.topic;
+        thingId = thingId.split('/');
+        thingId = thingId[2];
+
+        var x = lodash.findIndex($scope.standardItems, function(o) {
+          return o.thingId === thingId;
+        });
+
+        $scope.standardItems[x].inputValue = data.payload;
+
+      });
     }
 
     function _getAll(socketSubscribe){
@@ -70,6 +76,8 @@ function DashboardCtrl($scope, $cookieStore, $uibModal, thingService, socket, lo
       function(data) {
 
       });
+
+      socketInit();
     };
 
     _getAll(true);
@@ -125,12 +133,12 @@ function DashboardCtrl($scope, $cookieStore, $uibModal, thingService, socket, lo
 
     $scope.executeButton = function(data){
       console.log(data);
-      socket.emit('publish',{topic:'pub/' + userId + '/' + data._id, payload:data.payload});
+      socket.emit('publish',{topic:'pub/' + userId + '/' + data.thingId, payload:data.payload});
     }
 
     $scope.saveWidgets = function(){
       angular.forEach($scope.standardItems, function(value, key) {
-        console.log(value);
+        console.log('save widgets');
         var widget = {
           widgetInfo : value.widgetInfo
         }

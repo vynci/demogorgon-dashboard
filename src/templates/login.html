@@ -1,8 +1,11 @@
 <div class="wrapper">
   <div class="form-signin" style="box-shadow: 1px 1px 1px #888;">
     <form ng-submit="doLogin()">
-      <div style="text-align: center; padding-bottom: 35px; padding-top: 10px;">
+      <div style="text-align: center; padding-bottom: 25px; padding-top: 10px;">
         <img src="img/logo.png" alt="">
+        <br>
+        <br>
+        <h4>Dashboard (Beta)</h4>
       </div>
       <input ng-show="isRegisterForm" type="text" class="form-control login-input" ng-model="user.name" name="username" placeholder="Name" /><br>
       <input type="email" class="form-control login-input" ng-model="user.email" name="email" placeholder="Email Address" required="" autofocus="" /><br>

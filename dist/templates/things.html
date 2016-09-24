@@ -46,9 +46,13 @@
             </tbody>
           </table>
           <div ng-show="!things" style="text-align: center"><h4>Please Wait, Loading Things...</h4></div>
+          <div ng-if="things.length === 0" style="text-align: center">
+            <h5>You don't have any things yet. Click the button below to add :)</h5>
+            <a class="btn btn-warning" ng-click="addThing()"><span class="fa fa-plus"></span> Add Thing</a></div>
+          </div>
         </div>
       <!-- </rd-widget-body>
       <rd-widget> -->
   </div>
 
-</div>
+

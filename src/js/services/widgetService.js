@@ -26,6 +26,20 @@ angular.module('RDash').service('widgetService', ['$http', '$q', function($http,
 		return def.promise;
 	}
 
+  function getWidgetByThingId(userId, thingId) {
+    var def = $q.defer();
+
+    $http.get(gateway + "/pipe/" + userId + "/widgetByThing/" + thingId)
+    .success(function(data) {
+      def.resolve(data);
+    })
+    .error(function() {
+      def.reject("Failed to get the ");
+    });
+    return def.promise;
+  }
+
+
 	function updateWidgetById(userId, widgetId, data) {
 		var def = $q.defer();
 
@@ -70,7 +84,8 @@ angular.module('RDash').service('widgetService', ['$http', '$q', function($http,
 		getWidgets: getWidgets,
 		updateWidgetById : updateWidgetById,
 		createWidget : createWidget,
-		deleteWidgetById : deleteWidgetById
+		deleteWidgetById : deleteWidgetById,
+    getWidgetByThingId : getWidgetByThingId
 	};
 
 	return service;

@@ -13,9 +13,12 @@
 				</div>
 			</div>
 			<div class="form-group">
+				<!-- <pre>Model: {{customSelected | json}}</pre>
+				<input type="text" ng-model="customSelected" placeholder="Custom template" uib-typeahead="thing as thing.name for thing in things | filter:{name:$viewValue}" typeahead-template-url="templates/customTemplate.html" class="form-control" typeahead-show-hint="true" typeahead-min-length="0"> -->
 				<label class="control-label col-lg-3 col-md-3">Thing Id</label>
 				<div class="col-lg-9 col-md-9">
-					<input name="name" placeholder="ex: 57e2d1c925f7170300d97f0f" type="text" ng-model="form.thingId" class="form-control" tooltip-placement="top" uib-tooltip="Input an existing thingId, or create a new one by clicking on 'generate' button"/><br>
+					<!-- <input name="name" placeholder="ex: 57e2d1c925f7170300d97f0f" type="text" ng-model="form.thingId" class="form-control" required/><br> -->
+					<input type="text" ng-model="form.thingId" uib-typeahead="thing as thing._id for thing in things | filter:$viewValue" typeahead-show-hint="true" typeahead-min-length="0" class="form-control" tooltip-placement="top" uib-tooltip="Input an existing thingId, or create a new one by clicking on 'generate' button"><br>
 					<button ng-click="generateThing()" class="btn btn-success btn-block" tooltip-placement="top" uib-tooltip="Creates a thing">Generate</button>
 				</div>
 			</div>
@@ -31,6 +34,12 @@
 					<select class="form-control" name="mySelect" id="mySelect"
 					ng-options="option.name for option in data.availableOptions track by option.id"
 					ng-model="data.selectedOption"></select>
+				</div>
+			</div>
+			<div class="form-group" ng-show="data.selectedOption.id === '1'">
+				<label class="control-label col-lg-3 col-md-3">Unit</label>
+				<div class="col-lg-9 col-md-9">
+					<input name="name" placeholder="ex: °C, °F, km, m, in" type="textarea" ng-model="form.inputUnit" class="form-control" />
 				</div>
 			</div>
 			<div class="form-group" ng-show="data.selectedOption.id === '2'">

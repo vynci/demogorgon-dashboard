@@ -1,10 +1,9 @@
 angular.module('RDash').service('authenticationService', ['$q', '$http', '$localStorage', function($q, $http, $localStorage) {
-    var gateway = 'https://pipeero-rest-api.herokuapp.com';
+  var gateway = 'https://pipeero-rest-api.herokuapp.com';
     var service = {};
 
     function login(data) {
       var def = $q.defer();
-      console.log(data);
       $http.post( gateway + '/pipe/authenticate', data )
       .success(function(data) {
         def.resolve(data);
@@ -17,8 +16,20 @@ angular.module('RDash').service('authenticationService', ['$q', '$http', '$local
 
     function signup(data) {
       var def = $q.defer();
-      console.log(data);
       $http.post( gateway + '/pipe/user', data )
+      .success(function(data) {
+        def.resolve(data);
+      })
+      .error(function() {
+        def.reject("Failed to get the ");
+      });
+      return def.promise;
+    }
+
+    function updateUserById(userId, data) {
+      var def = $q.defer();
+
+      $http.put(gateway + "/pipe/user/" + userId, data)
       .success(function(data) {
         def.resolve(data);
       })
@@ -50,6 +61,7 @@ angular.module('RDash').service('authenticationService', ['$q', '$http', '$local
     service.login = login;
     service.signup = signup;
     service.getUsers = getUsers;
+    service.updateUserById = updateUserById;
     service.Logout = Logout;
 
     return service;

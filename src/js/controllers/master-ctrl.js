@@ -131,15 +131,12 @@ function MasterCtrl($scope, $cookieStore, authenticationService, $localStorage, 
         }
       },
       function(data) {
-        console.log(data);
         $scope.isRegisterLoading = false;
       });
     }
 
     $scope.doLogout = function(){
-      console.log('logout');
       delete $localStorage.currentUser;
-      console.log($localStorage);
       $http.defaults.headers.common['x-access-token'] = '';
       $scope.isLoggedIn = false;
       $location.path('/login');

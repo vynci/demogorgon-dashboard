@@ -1,5 +1,5 @@
 angular.module('RDash').service('thingService', ['$q', '$http', '$window', function($q, $http) {
-    var gateway = 'https://pipeero-rest-api.herokuapp.com';
+  var gateway = 'https://pipeero-rest-api.herokuapp.com';
     function getThingByUserId(userId) {
     var def = $q.defer();
 
@@ -25,7 +25,7 @@ angular.module('RDash').service('thingService', ['$q', '$http', '$window', funct
         });
         return def.promise;
     }
-    
+
 	function updateThingById(userId, thingId, data) {
 		var def = $q.defer();
 
@@ -50,11 +50,13 @@ angular.module('RDash').service('thingService', ['$q', '$http', '$window', funct
 			def.reject("Failed to get the ");
 		});
 		return def.promise;
-	}    
+	}
 
 
     return {
-    getThingByUserId :getThingByUserId,
-        createThing : createThing
+      getThingByUserId :getThingByUserId,
+      createThing : createThing,
+      updateThingById : updateThingById,
+      deleteThingById : deleteThingById
     };
 }]);

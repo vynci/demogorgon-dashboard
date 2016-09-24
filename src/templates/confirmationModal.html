@@ -1,0 +1,21 @@
+<div>
+	<form name="_form" class="form-horizontal">
+		<div class="modal-header">
+			<button type="button" class="close" ng-click="dismiss()" aria-hidden="true">&times;</button>
+			<h3>Delete Confirmation</h3>
+		</div>
+
+		<div class="modal-body">
+			<span ng-if="warningMessage"><b style="color: red;"><h5>*Warning: This thing is being used by a widget.</h5></b></span>
+			<br>
+			<span>Are You Sure?</span>
+
+
+		</div>
+
+		<div class="modal-footer">
+			<a ng-click="dismiss()" data-dismiss="modal" class="btn btn-default" tabindex="-1"><i class="glyphicon glyphicon-remove"></i> Cancel</a>
+			<button ng-click="delete()" class="btn btn-danger"><i class="glyphicon glyphicon-ok"><i class="glyphicon glyphicon-trash"></i> Delete</button>
+		</div>
+	</form>
+</div>

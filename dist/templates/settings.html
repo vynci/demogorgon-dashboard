@@ -1,8 +1,8 @@
 <div class="wrapper">
-   <div style="padding: 150px 150px 150px">
+   <div style="padding: 10px 150px 150px">
     <form name="_form" class="form-horizontal" style="border: 1px solid #444">
         <div class="modal-header">
-            
+
             <h3>My Profile</h3>
         </div>
 
@@ -10,33 +10,43 @@
             <div class="form-group">
                 <label class="control-label col-lg-3 col-md-3"><span tooltip="I'm a tooltip!">Name</span></label>
                 <div class="col-lg-9 col-md-9">
-                    <input name="name" placeholder="ex: Temperature Sensor" type="text" ng-model="form.name" class="form-control" tooltip-placement="top" uib-tooltip="Create a name for your widget" required>
+                    <input name="name" placeholder="ex: Temperature Sensor" type="text" ng-model="form.name" class="form-control" required>
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label col-lg-3 col-md-3">Email</label>
                 <div class="col-lg-9 col-md-9">
-                    <input name="name" placeholder="ex: 57e2d1c925f7170300d97f0f" type="text" ng-model="form.email" class="form-control" tooltip-placement="top" uib-tooltip="Input an existing thingId, or create a new one by clicking on 'generate' button"><br>
+                    <input name="name" placeholder="ex: 57e2d1c925f7170300d97f0f" type="text" ng-model="form.email" class="form-control"><br>
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label col-lg-3 col-md-3">Password</label>
                 <div class="col-lg-9 col-md-9">
-                    <input name="name" value="ex: 57e2d1c925f7170300d97f0f" type="password" class="form-control" tooltip-placement="top" uib-tooltip="Input an existing thingId, or create a new one by clicking on 'generate' button"><br>
+                    <input name="name" ng-model="form.password" type="password" class="form-control"><br>
                 </div>
             </div>
-            <hr>                        
+            <div class="form-group">
+              <label class="control-label col-lg-3 col-md-3">Confirm Password</label>
+              <div class="col-lg-9 col-md-9">
+                <input name="name" ng-model="form.password2" type="password" class="form-control"><br>
+              </div>
+            </div>
+            <uib-alert ng-show="settingsToaster" type="{{alertMessage.type}}" close="closeSettingsToaster()" dismiss-on-timeout="1000">{{settingsToasterMsg.msg}}</uib-alert>
+            <hr>
             <div class="form-group">
                 <label class="control-label col-lg-3 col-md-3"><span tooltip="I'm a tooltip!">User Id</span></label>
                 <div class="col-lg-9 col-md-9">
                     <label class="control-label col-lg-3 col-md-3">{{form.userId}}</label>
                     <!--<input name="name" placeholder="ex: Temperature Sensor" type="text" ng-model="form.userId" class="form-control" tooltip-placement="top" uib-tooltip="Create a name for your widget" required/>-->
                 </div>
-            </div>                
-        <div class="modal-footer">
-            <button ng-click="save()" class="btn btn-primary"><i class="glyphicon glyphicon-ok"></i>Save</button>
+            </div>
         </div>
-    </div></form>        
+        <div class="modal-footer">
+
+            <button ng-click="updateUser()" class="btn btn-primary"><i class="glyphicon glyphicon-ok"></i>Save</button>
+        </div>
+    </form>
+
    </div>
 
 </div>

@@ -9,6 +9,15 @@ function WidgetModalCtrl($scope, $uibModalInstance, items, thingService, $localS
 
   var modalUserId = $localStorage.currentUser.info.id;
 
+  thingService.getThingByUserId(modalUserId)
+  .then(function(things) {
+    console.log(things);
+    $scope.things = things;
+  },
+  function(data) {
+
+  });
+
   if(typeof items !== 'object'){
     $scope.showDeleteButton = true;
     console.log('hey');
@@ -18,11 +27,19 @@ function WidgetModalCtrl($scope, $uibModalInstance, items, thingService, $localS
   $scope.data = {
     availableOptions: [
       {id: '1', name: 'Input'},
-      {id: '2', name: 'Output'},
-      {id: '3', name: 'Graph'}
+      {id: '2', name: 'Output'}
     ],
-    selectedOption: {id: '2', name: 'Output'} //This sets the default value of the select in the ui
+    selectedOption: {id: '1', name: 'Input'} //This sets the default value of the select in the ui
   };
+
+  $scope.ngModelOptionsSelected = function(value) {
+    if (arguments.length) {
+      _selected = value;
+    } else {
+      return _selected;
+    }
+  };
+
 
   if(items){
     $scope.form = {
@@ -32,7 +49,8 @@ function WidgetModalCtrl($scope, $uibModalInstance, items, thingService, $localS
       thingId : items.thingId,
       buttonLabel : items.buttonLabel,
       payload : items.payload,
-      thingType : items.thingType
+      thingType : items.thingType,
+      inputUnit : items.inputUnit
     };
   } else {
     $scope.form = {};
@@ -66,10 +84,13 @@ function WidgetModalCtrl($scope, $uibModalInstance, items, thingService, $localS
   };
 
   $scope.save = function () {
-    console.log($scope.data.selectedOption.name);
-    $scope.form.thingType = $scope.data.selectedOption.name;
-    $uibModalInstance.close($scope.form);
-    $scope.form.delete = false;
+    console.log($scope.form);
+    if($scope.form.name){
+      $scope.form.thingType = $scope.data.selectedOption.name;
+      $uibModalInstance.close($scope.form);
+      $scope.form.delete = false;
+    }
+
   };
 
   $scope.dismiss = function () {

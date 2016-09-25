@@ -33,7 +33,7 @@ function DashboardCtrl($scope, $cookieStore, $uibModal, thingService, socket, lo
 
     $scope.$on('$locationChangeStart', function(next, current) {
       console.log('next');
-      socket.disconnect();
+      // socket.disconnect();
     });
 
     $scope.alertShow = false;

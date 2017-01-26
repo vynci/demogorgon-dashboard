@@ -43,9 +43,7 @@ function DashboardCtrl($scope, $cookieStore, $uibModal, thingService, socket, lo
     }
 
     function socketInit(){
-      console.log('socket init!');
       socket.on('connect', function(){
-        console.log('socket connect');
         // _getAll(true);
       });
 
@@ -90,7 +88,6 @@ function DashboardCtrl($scope, $cookieStore, $uibModal, thingService, socket, lo
         start: function(event, $element, widget) {}, // optional callback fired when resize is started,
         resize: function(event, $element, widget) {}, // optional callback fired when item is resized,
         stop: function(event, $element, widget) {
-          console.log(widget);
           $scope.saveWidgets();
         } // optional callback fired when item is finished resizing
       },
@@ -100,7 +97,6 @@ function DashboardCtrl($scope, $cookieStore, $uibModal, thingService, socket, lo
         start: function(event, $element, widget) {}, // optional callback fired when drag is started,
         drag: function(event, $element, widget) {}, // optional callback fired when item is moved,
         stop: function(event, $element, widget) {
-          console.log(widget);
           $scope.saveWidgets();
         } // optional callback fired when item is finished dragging
       }
@@ -132,13 +128,11 @@ function DashboardCtrl($scope, $cookieStore, $uibModal, thingService, socket, lo
     ];
 
     $scope.executeButton = function(data){
-      console.log(data);
       socket.emit('publish',{topic:'pub/' + userId + '/' + data.thingId, payload:data.payload});
     }
 
     $scope.saveWidgets = function(){
       angular.forEach($scope.standardItems, function(value, key) {
-        console.log('save widgets');
         var widget = {
           widgetInfo : value.widgetInfo
         }
@@ -179,7 +173,6 @@ function DashboardCtrl($scope, $cookieStore, $uibModal, thingService, socket, lo
     };
 
     $scope.openSettings = function(data){
-      console.log(data);
       var modalInstance = $uibModal.open({
         animation: false,
         templateUrl: 'templates/widgetModal.html',
@@ -223,16 +216,12 @@ function DashboardCtrl($scope, $cookieStore, $uibModal, thingService, socket, lo
 
     function updateWidget(data){
       if(data.delete){
-        console.log('delete!');
-        console.log(data);
         widgetService.deleteWidgetById(userId, data.id, data).then(function(widgets) {
           _getAll();
         },
         function(data) {
-          console.log('error');
         });
       } else {
-        console.log(data);
         var id = data.id
         delete data.id;
 

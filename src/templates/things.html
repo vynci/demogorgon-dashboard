@@ -33,9 +33,11 @@
             <tbody>
               <tr ng-repeat="thing in things">
                 <td>
-                 {{ thing.name }}
+                 <a ng-href="#/things/{{thing._id}}">{{ thing.name }}</a>
                 </td>
-                <td>{{thing._id}}</td>
+                <td>
+                  <a ng-href="#/things/{{thing._id}}">{{thing._id}}</a>
+                </td>
                 <td>{{thing.createDate}}</td>
                 <td>{{thing.status}}</td>
                 <td>

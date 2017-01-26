@@ -32,6 +32,11 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider', '$httpPr
                 templateUrl: 'templates/things.html',
                 controller: 'ThingCtrl'
             })
+            .state('thingsData', {
+              url: '/things/:thingId',
+              templateUrl: 'templates/thingsData.html',
+              controller: 'LogCtrl'
+            })
             .state('settings', {
                 url: '/settings',
                 templateUrl: 'templates/settings.html',
